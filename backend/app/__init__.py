@@ -9,6 +9,7 @@ from flask_cors import CORS
 from .models import db, bcrypt
 from .auth.auth_routes import auth_bp
 from .routes.todos import todos_bp
+from .routes.recipes import recipes_bp
 
 
 migrate = Migrate()
@@ -29,6 +30,7 @@ def create_app():
 
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(todos_bp, url_prefix='/todo')
+    app.register_blueprint(recipes_bp, url_prefix='/recipe')
 
 
     with app.app_context():
