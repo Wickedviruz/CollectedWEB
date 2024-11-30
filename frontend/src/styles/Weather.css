@@ -1,0 +1,50 @@
+.weather-container {
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  .weather-search {
+    margin-bottom: 20px;
+  }
+  
+  .weather-search input {
+    padding: 10px;
+    margin-right: 10px;
+    width: 200px;
+  }
+  
+  .weather-search button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .current-weather, .forecast-list {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .forecast-day {
+    padding: 10px;
+    margin: 10px 0;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+  }
+  
+  .forecast-day:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .forecast-details {
+    margin-top: 10px;
+    padding: 10px;
+    background: #e0f7fa;
+    border-radius: 5px;
+  }
+  
