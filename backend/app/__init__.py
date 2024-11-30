@@ -10,6 +10,7 @@ from .models import db, bcrypt
 from .auth.auth_routes import auth_bp
 from .routes.todos import todos_bp
 from .routes.recipes import recipes_bp
+from .routes.weather import weather_bp
 
 
 migrate = Migrate()
@@ -21,6 +22,7 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = config.SQLALCHEMY_TRACK_MODIFICATIONS
     app.config['SECRET_KEY'] = config.SECRET_KEY
     app.config['JWT_SECRET_KEY'] = config.JWT_SECRET_KEY
+    app.config['API_KEY'] = config.API_KEY
 
     db.init_app(app)
     bcrypt.init_app(app)
@@ -31,6 +33,7 @@ def create_app():
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(todos_bp, url_prefix='/todo')
     app.register_blueprint(recipes_bp, url_prefix='/recipe')
+    app.register_blueprint(weather_bp, url_prefix='/weather')
 
 
     with app.app_context():

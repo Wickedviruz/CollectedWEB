@@ -1,8 +1,8 @@
 # CONFIG FOR BASE SETUP
 
 app:
-  secret_key: "testnyckel"
-  jwt_secret_key: "jwttestnyckel"
+  secret_key: "<YOUR_SECRETE_KEY_HERE>"
+  jwt_secret_key: "<YOUR_SECRETE_KEY_HERE>"
   debug: true
 
 host:
@@ -10,7 +10,7 @@ host:
   port: "5000"
 
 database:
-  uri: "postgresql://postgres:devjohan@localhost/Jurvis"
+  uri: "postgres://<username>:<password>@<host>:<port>/<database>"
   check_modifications: false
 
 logging:
@@ -18,6 +18,6 @@ logging:
   file: "app.log"
   
 weather:
- api_key: "7d526ec9f3ac418d7a813e496ffc93c3"
+ api_key: "<YOUR_API_KEY_HERE>"
  weather_url: "http://api.openweathermap.org/data/2.5/weather"
  forecast_url: "http://api.openweathermap.org/data/2.5/forecast"
