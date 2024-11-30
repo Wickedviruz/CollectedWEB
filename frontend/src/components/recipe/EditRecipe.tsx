@@ -46,6 +46,11 @@ const EditRecipe: React.FC = () => {
   const [recipe, setRecipe] = useState<Recipe | null>(null);
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.warn('Ingen giltig token funnen. Skippar API-anrop för todos.');
+      return; // Slutar om ingen token finns.
+    }
     const getRecipe = async () => {
       try {
         const recipes = await fetchRecipes();

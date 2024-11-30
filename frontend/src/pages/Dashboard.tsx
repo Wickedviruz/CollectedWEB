@@ -8,7 +8,10 @@ import AddRecipe from '../components/recipe/AddRecipe';
 import EditRecipe from '../components/recipe/EditRecipe';
 import Weather from '../components/weather/Weather';
 import Profile from '../components/Profile';
-import Settings from '../components/Settings';
+import ProfileSettings from '../components/settings/ProfileSettings';
+import GeneralSettings from '../components/settings/GeneralSettings';
+import SecuritySettings from '../components/settings/SecuritySettings';
+
 import {
   Box,
   Button,
@@ -23,6 +26,7 @@ import {
   ListItemIcon,
   ListItemButton,
   Divider,
+  Collapse,
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -31,6 +35,11 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import TuneIcon from '@mui/icons-material/Tune';
+import PersonIcon from '@mui/icons-material/Person';
+import SecurityIcon from '@mui/icons-material/Security';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const darkTheme = createTheme({
   palette: {
@@ -55,11 +64,17 @@ const darkTheme = createTheme({
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   // Funktion för att toggla menyn
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
+
+    // Funktion för att toggla inställningsmenyn
+    const toggleSettingsMenu = () => {
+      setIsSettingsOpen(!isSettingsOpen);
+    };
 
   // Funktion för att logga ut
   const handleLogout = () => {
@@ -78,7 +93,7 @@ const Dashboard: React.FC = () => {
           open={isDrawerOpen}
           sx={{
             '& .MuiDrawer-paper': {
-              width: isDrawerOpen ? 240 : 0,
+              width: isDrawerOpen ? 'fit-content' : 0,
               backgroundColor: 'background.paper',
               color: 'text.primary',
               transition: 'width 0.3s ease-in-out',
@@ -122,15 +137,43 @@ const Dashboard: React.FC = () => {
               </ListItem>
 
               <ListItem disablePadding>
-                <ListItemButton component={Link} to="/dashboard/settings">
+                <ListItemButton onClick={toggleSettingsMenu}>
                   <ListItemIcon>
                     <SettingsIcon sx={{ color: 'text.primary' }} />
                   </ListItemIcon>
                   <ListItemText primary="Inställningar" />
+                  {isSettingsOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                 </ListItemButton>
               </ListItem>
+              <Collapse in={isSettingsOpen} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding sx={{ pl: 4 }}>
+                  <ListItem disablePadding>
+                    <ListItemButton component={Link} to="/dashboard/settings/profile">
+                      <ListItemIcon>
+                        <PersonIcon sx={{ color: 'text.primary' }} />
+                      </ListItemIcon>
+                      <ListItemText primary="Profilinställningar" />
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton component={Link} to="/dashboard/settings/general">
+                      <ListItemIcon>
+                        <TuneIcon sx={{ color: 'text.primary' }} />
+                      </ListItemIcon>
+                      <ListItemText primary="Allmänna Inställningar" />
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton component={Link} to="/dashboard/settings/security">
+                      <ListItemIcon>
+                        <SecurityIcon sx={{ color: 'text.primary' }} />
+                      </ListItemIcon>
+                      <ListItemText primary="Säkerhetsinställningar" />
+                    </ListItemButton>
+                  </ListItem>
+                </List>
+              </Collapse>
             </List>
-
             <Divider sx={{ mt: 'auto' }} />
 
             <Box sx={{ padding: 2 }}>
@@ -151,7 +194,7 @@ const Dashboard: React.FC = () => {
           sx={{
             flex: 1,
             padding: 2,
-            marginLeft: isDrawerOpen ? '240px' : '0',
+            marginLeft: isDrawerOpen ? '290px' : '0',
             transition: 'margin-left 0.3s ease-in-out',
             backgroundColor: 'background.default',
             color: 'text.primary',
@@ -262,7 +305,9 @@ const Dashboard: React.FC = () => {
               }
             />
             <Route path="profile" element={<Profile />} />
-            <Route path="settings" element={<Settings />} />
+            <Route path="settings/profile" element={<ProfileSettings />} />
+            <Route path="settings/general" element={<GeneralSettings />} />
+            <Route path="settings/security" element={<SecuritySettings />} />
             <Route path="todos" element={<TodoList />} />
             <Route path="todos/add" element={<AddTodo />} />
             <Route path="todos/edit/:id" element={<EditTodo />} />

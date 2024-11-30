@@ -43,8 +43,3 @@ def login():
     
     return jsonify({'message': ' Invalid credentials'}), 401
 
-@auth_bp.route('/admin-only', methods=['GET'])
-@jwt_required()
-@admin_required
-def admin_only():
-    return jsonify({'message': 'Welcome, admin!'})

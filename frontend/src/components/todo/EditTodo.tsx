@@ -44,6 +44,11 @@ const EditTodo: React.FC = () => {
   const [todo, setTodo] = useState<Todo | null>(null);
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.warn('Ingen giltig token funnen. Skippar API-anrop för todos.');
+      return; // Slutar om ingen token finns.
+    }
     if (!id) {
       console.error('Id is undefined');
       return;

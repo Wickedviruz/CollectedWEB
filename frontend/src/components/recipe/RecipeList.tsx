@@ -48,6 +48,11 @@ const RecipeList: React.FC = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.warn('Ingen giltig token funnen. Skippar API-anrop för todos.');
+      return; // Slutar om ingen token finns.
+    }
     const getRecipes = async () => {
       try {
         const fetchedRecipes = await fetchRecipes();

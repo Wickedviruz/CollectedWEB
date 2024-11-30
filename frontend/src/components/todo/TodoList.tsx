@@ -50,6 +50,12 @@ const TodoList: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.warn('Ingen giltig token funnen. Skippar API-anrop för todos.');
+      return; // Slutar om ingen token finns.
+    }
+
     const getTodos = async () => {
       try {
         const todos = await fetchTodos();
