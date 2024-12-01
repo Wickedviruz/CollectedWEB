@@ -3,6 +3,7 @@
 app:
   secret_key: "<YOUR_SECRETE_KEY_HERE>"
   jwt_secret_key: "<YOUR_SECRETE_KEY_HERE>"
+  max_content_length: "16*1024*1024"
   debug: true
 
 host:

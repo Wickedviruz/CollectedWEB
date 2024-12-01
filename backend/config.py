@@ -17,6 +17,7 @@ class Config:
 
             self.SECRET_KEY = self.config['app']['secret_key']
             self.JWT_SECRET_KEY = self.config['app']['jwt_secret_key']
+            self.MAX_CONTENT_LENGTH = self.config['app']['max_content_length']
             self.DEBUG = self.config['app']['debug']
             self.HOST = self.config['host']['host']
             self.PORT = self.config['host']['port']

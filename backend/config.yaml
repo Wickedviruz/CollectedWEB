@@ -3,6 +3,7 @@
 app:
   secret_key: "testnyckel"
   jwt_secret_key: "jwttestnyckel"
+  max_content_length: 1048576
   debug: true
 
 host:

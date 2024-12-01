@@ -1,12 +1,13 @@
 from flask import Blueprint, request, jsonify
 from app.models import User, db
 from flask_jwt_extended import create_access_token
-from flask_jwt_extended import jwt_required
-from app.decorators import admin_required
+from ..extensions import limiter
+from datetime import timedelta
 
 auth_bp = Blueprint('auth', __name__)
 
 @auth_bp.route('/register', methods=['POST'])
+@limiter.limit("5 per minute")
 def register():
     data = request.get_json()
 
@@ -29,6 +30,7 @@ def register():
         return jsonify({'message': 'Failed to register user'}), 500
 
 @auth_bp.route('/login', methods=['POST'])
+@limiter.limit("5 per minute")
 def login():
     data = request.get_json()
 
@@ -38,7 +40,7 @@ def login():
     user = User.query.filter_by(email=email).first()
 
     if user and user.check_password(password):
-        access_token = create_access_token(identity=user.id)
+        access_token = create_access_token(identity=user.id, expires_delta=timedelta(minutes=30))
         return jsonify({'access_token': access_token, 'role': user.role}), 200
     
     return jsonify({'message': ' Invalid credentials'}), 401
