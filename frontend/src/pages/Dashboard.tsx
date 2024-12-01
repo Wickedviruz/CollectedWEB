@@ -29,7 +29,7 @@ import {
   Collapse,
 } from '@mui/material';
 import { motion } from 'framer-motion';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -40,31 +40,13 @@ import PersonIcon from '@mui/icons-material/Person';
 import SecurityIcon from '@mui/icons-material/Security';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#90caf9',
-    },
-    secondary: {
-      main: '#f48fb1',
-    },
-    background: {
-      default: '#121212',
-      paper: '#1d1d1d',
-    },
-    text: {
-      primary: '#ffffff',
-      secondary: '#b0bec5',
-    },
-  },
-});
+import { useThemeContext } from '../context/ThemeContext';
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(true);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const { currentTheme } = useThemeContext();
 
   // Funktion för att toggla menyn
   const toggleDrawer = () => {
@@ -84,7 +66,7 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={currentTheme}>
       <Box sx={{ display: 'flex', minHeight: '100vh', backgroundColor: 'background.default' }}>
         {/* Meny Drawer */}
         <Drawer

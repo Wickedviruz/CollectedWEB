@@ -8,28 +8,10 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {  ThemeProvider } from '@mui/material/styles';
 import { motion } from 'framer-motion';
+import { useThemeContext } from '../../context/ThemeContext';
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#90caf9',
-    },
-    secondary: {
-      main: '#f48fb1',
-    },
-    background: {
-      default: '#121212',
-      paper: '#1d1d1d',
-    },
-    text: {
-      primary: '#ffffff',
-      secondary: '#b0bec5',
-    },
-  },
-});
 
 const AddRecipe: React.FC = () => {
   const navigate = useNavigate();
@@ -38,6 +20,7 @@ const AddRecipe: React.FC = () => {
   const [instructions, setInstructions] = useState<string>('');
   const [category, setCategory] = useState<string>('');
   const [imageUrl, setImageUrl] = useState<string>('');
+  const { currentTheme } = useThemeContext();
 
   const handleAddRecipe = async () => {
     if (!title.trim() || !ingredients.trim() || !instructions.trim()) return;
@@ -51,7 +34,7 @@ const AddRecipe: React.FC = () => {
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={currentTheme}>
       <Container maxWidth="sm">
         <Box
           component={motion.div}

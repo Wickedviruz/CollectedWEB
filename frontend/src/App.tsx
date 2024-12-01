@@ -5,33 +5,11 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#90caf9',
-    },
-    secondary: {
-      main: '#f48fb1',
-    },
-    background: {
-      default: '#121212',
-      paper: '#1d1d1d',
-    },
-    text: {
-      primary: '#ffffff',
-      secondary: '#b0bec5',
-    },
-  },
-});
+import { ThemeContextProvider } from './context/ThemeContext';
 
 const App: React.FC = () => {
   return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
+    <ThemeContextProvider>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -42,7 +20,7 @@ const App: React.FC = () => {
           </ProtectedRoute>}/>
         </Routes>
       </Router>
-    </ThemeProvider>
+      </ThemeContextProvider>
   );
 };
 

@@ -21,7 +21,8 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { motion } from 'framer-motion';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
+import { useThemeContext } from '../../context/ThemeContext';
 import {
   WiDaySunny,
   WiNightClear,
@@ -29,31 +30,11 @@ import {
   WiSnow,
   WiFog,
   WiDayThunderstorm,
-  WiNightAltRainMix,
   WiWindy,
   WiHail,
   WiCloudy,
 } from 'react-icons/wi';
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#90caf9',
-    },
-    secondary: {
-      main: '#f48fb1',
-    },
-    background: {
-      default: '#121212',
-      paper: '#1d1d1d',
-    },
-    text: {
-      primary: '#ffffff',
-      secondary: '#b0bec5',
-    },
-  },
-});
 
 interface Forecast {
   date: string;
@@ -76,6 +57,7 @@ const Weather: React.FC = () => {
   const [forecast, setForecast] = useState<Forecast[]>([]);
   const [city, setCity] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const { currentTheme } = useThemeContext();
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -203,7 +185,7 @@ const Weather: React.FC = () => {
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={currentTheme}>
       <Container maxWidth="lg">
         <Box sx={{ marginTop: 4 }}>
           <motion.div

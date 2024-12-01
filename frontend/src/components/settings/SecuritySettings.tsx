@@ -1,29 +1,11 @@
 import React, { useState } from 'react';
 import { Box, Container, Typography, FormControlLabel, Switch, Button } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#90caf9',
-    },
-    secondary: {
-      main: '#f48fb1',
-    },
-    background: {
-      default: '#121212',
-      paper: '#1d1d1d',
-    },
-    text: {
-      primary: '#ffffff',
-      secondary: '#b0bec5',
-    },
-  },
-});
+import { ThemeProvider } from '@mui/material/styles';
+import { useThemeContext } from '../../context/ThemeContext';
 
 const SecuritySettings: React.FC = () => {
   const [twoFactorAuth, setTwoFactorAuth] = useState<boolean>(false);
+  const { currentTheme } = useThemeContext();
 
   const handleEnableTwoFactor = () => {
     setTwoFactorAuth(!twoFactorAuth);
@@ -31,7 +13,7 @@ const SecuritySettings: React.FC = () => {
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={currentTheme}>
       <Container maxWidth="sm">
         <Box sx={{ p: 3, backgroundColor: 'background.paper', borderRadius: 2, boxShadow: 3, marginTop: 4 }}>
           <Typography variant="h4" component="h1" gutterBottom>

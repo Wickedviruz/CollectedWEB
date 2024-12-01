@@ -12,32 +12,13 @@ import {
   Tooltip,
 } from '@mui/material';
 import { motion } from 'framer-motion';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CheckIcon from '@mui/icons-material/Check';
 import UndoIcon from '@mui/icons-material/Undo';
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#90caf9',
-    },
-    secondary: {
-      main: '#f48fb1',
-    },
-    background: {
-      default: '#121212',
-      paper: '#1d1d1d',
-    },
-    text: {
-      primary: '#ffffff',
-      secondary: '#b0bec5',
-    },
-  },
-});
+import { useThemeContext } from '../../context/ThemeContext';
 
 interface Todo {
   id: number;
@@ -48,6 +29,7 @@ interface Todo {
 
 const TodoList: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
+  const { currentTheme } = useThemeContext();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -92,7 +74,7 @@ const TodoList: React.FC = () => {
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={currentTheme}>
       <Box sx={{ padding: 4, backgroundColor: 'background.default', minHeight: '100vh' }}>
         <Typography variant="h3" component="h2" gutterBottom color="text.primary">
           Att Göra-Lista

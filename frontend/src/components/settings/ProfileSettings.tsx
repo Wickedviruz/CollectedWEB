@@ -1,28 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Box, TextField, Button, Avatar, Typography, Container, Switch, FormControlLabel } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
+import { useThemeContext } from '../../context/ThemeContext';
 import { motion } from 'framer-motion';
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#90caf9',
-    },
-    secondary: {
-      main: '#f48fb1',
-    },
-    background: {
-      default: '#121212',
-      paper: '#1d1d1d',
-    },
-    text: {
-      primary: '#ffffff',
-      secondary: '#b0bec5',
-    },
-  },
-});
 
 const ProfileSettings: React.FC = () => {
   const [name, setName] = useState<string>('');
@@ -31,6 +13,7 @@ const ProfileSettings: React.FC = () => {
   const [profileImage, setProfileImage] = useState<string | null>(null);
   const [profileImageFile, setProfileImageFile] = useState<File | null>(null);
   const [notifications, setNotifications] = useState<boolean>(false);
+  const { currentTheme } = useThemeContext();
 
   useEffect(() => {
     // Hämta användarens profilinformation när komponenten laddas
@@ -84,7 +67,7 @@ const ProfileSettings: React.FC = () => {
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={currentTheme}>
       <Container maxWidth="sm">
         <motion.div
           initial={{ opacity: 0, y: -20 }}

@@ -8,8 +8,9 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { motion } from 'framer-motion';
+import { useThemeContext } from '../../context/ThemeContext';
 
 interface Recipe {
   id: number;
@@ -20,30 +21,12 @@ interface Recipe {
   image_url?: string;
 }
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#90caf9',
-    },
-    secondary: {
-      main: '#f48fb1',
-    },
-    background: {
-      default: '#121212',
-      paper: '#1d1d1d',
-    },
-    text: {
-      primary: '#ffffff',
-      secondary: '#b0bec5',
-    },
-  },
-});
 
 const EditRecipe: React.FC = () => {
   const { id } = useParams<{ id: string }>() as { id: string };
   const navigate = useNavigate();
   const [recipe, setRecipe] = useState<Recipe | null>(null);
+  const { currentTheme } = useThemeContext();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -86,7 +69,7 @@ const EditRecipe: React.FC = () => {
   }
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={currentTheme}>
       <Container maxWidth="sm">
         <Box
           component={motion.div}

@@ -6,28 +6,10 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { motion } from 'framer-motion';
+import { useThemeContext } from '../../context/ThemeContext';
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#90caf9',
-    },
-    secondary: {
-      main: '#f48fb1',
-    },
-    background: {
-      default: '#121212',
-      paper: '#1d1d1d',
-    },
-    text: {
-      primary: '#ffffff',
-      secondary: '#b0bec5',
-    },
-  },
-});
 
 const Register: React.FC = () => {
   const [firstname, setFirstname] = useState('');
@@ -35,6 +17,7 @@ const Register: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const { currentTheme } = useThemeContext();
 
   const handleRegister = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -57,7 +40,7 @@ const Register: React.FC = () => {
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={currentTheme}>
       <Box
         sx={{
           minHeight: '100vh',
@@ -100,7 +83,7 @@ const Register: React.FC = () => {
                 value={firstname}
                 onChange={(e) => setFirstname(e.target.value)}
                 required
-                sx={{ mb: 2, backgroundColor: darkTheme.palette.background.paper }}
+                sx={{ mb: 2, backgroundColor: currentTheme.palette.background.paper }}
               />
               <TextField
                 label="Last Name"
@@ -109,7 +92,7 @@ const Register: React.FC = () => {
                 value={lastname}
                 onChange={(e) => setLastname(e.target.value)}
                 required
-                sx={{ mb: 2, backgroundColor: darkTheme.palette.background.paper }}
+                sx={{ mb: 2, backgroundColor: currentTheme.palette.background.paper }}
               />
               <TextField
                 label="Email"
@@ -119,7 +102,7 @@ const Register: React.FC = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                sx={{ mb: 2, backgroundColor: darkTheme.palette.background.paper }}
+                sx={{ mb: 2, backgroundColor: currentTheme.palette.background.paper }}
               />
               <TextField
                 label="Password"
@@ -129,7 +112,7 @@ const Register: React.FC = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                sx={{ mb: 2, backgroundColor: darkTheme.palette.background.paper }}
+                sx={{ mb: 2, backgroundColor: currentTheme.palette.background.paper }}
               />
               <motion.div
                 whileHover={{ scale: 1.05 }}

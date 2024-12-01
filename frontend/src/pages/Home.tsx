@@ -5,31 +5,13 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { motion } from 'framer-motion';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { GlobalStyles } from '@mui/material';
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#90caf9',
-    },
-    secondary: {
-      main: '#f48fb1',
-    },
-    background: {
-      default: '#121212',
-      paper: '#1d1d1d',
-    },
-    text: {
-      primary: '#ffffff',
-      secondary: '#b0bec5',
-    },
-  },
-});
+import { useThemeContext } from '../context/ThemeContext';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
+  const { currentTheme } = useThemeContext();
 
   const handleLogin = () => {
     navigate('/login');
@@ -40,8 +22,8 @@ const Home: React.FC = () => {
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <GlobalStyles styles={{ body: { backgroundColor: darkTheme.palette.background.default, color: darkTheme.palette.text.primary, margin: 0, fontFamily: 'Roboto, sans-serif' } }} />
+    <ThemeProvider theme={currentTheme}>
+      <GlobalStyles styles={{ body: { backgroundColor: currentTheme.palette.background.default, color: currentTheme.palette.text.primary, margin: 0, fontFamily: 'Roboto, sans-serif' } }} />
       <Container maxWidth={false} sx={{ width: '100%', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Box 
           sx={{

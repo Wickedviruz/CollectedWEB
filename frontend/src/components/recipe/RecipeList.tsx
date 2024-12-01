@@ -12,28 +12,9 @@ import {
   Typography,
   Grid,
 } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
+import { useThemeContext } from '../../context/ThemeContext'; 
 import { motion } from 'framer-motion';
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#90caf9',
-    },
-    secondary: {
-      main: '#f48fb1',
-    },
-    background: {
-      default: '#121212',
-      paper: '#1d1d1d',
-    },
-    text: {
-      primary: '#ffffff',
-      secondary: '#b0bec5',
-    },
-  },
-});
 
 interface Recipe {
   id: number; // id är obligatoriskt
@@ -46,6 +27,7 @@ interface Recipe {
 
 const RecipeList: React.FC = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const { currentTheme } = useThemeContext(); 
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -75,7 +57,7 @@ const RecipeList: React.FC = () => {
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={currentTheme}>
       <Container maxWidth="lg" sx={{ marginTop: 4 }}>
         <Box display="flex" justifyContent="space-between" alignItems="center" mb={4}>
           <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
@@ -88,7 +70,7 @@ const RecipeList: React.FC = () => {
             <Button
               variant="contained"
               color="primary"
-              sx={{ backgroundColor: darkTheme.palette.primary.main }}
+              sx={{ backgroundColor: currentTheme.palette.primary.main }}
               component={Link}
               to="/dashboard/recipes/add"
             >
