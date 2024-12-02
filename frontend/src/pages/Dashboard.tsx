@@ -7,7 +7,7 @@ import RecipeList from '../components/recipe/RecipeList';
 import AddRecipe from '../components/recipe/AddRecipe';
 import EditRecipe from '../components/recipe/EditRecipe';
 import Weather from '../components/weather/Weather';
-import Profile from '../components/Profile';
+import Profile from './Profile';
 import ProfileSettings from '../components/settings/ProfileSettings';
 import GeneralSettings from '../components/settings/GeneralSettings';
 import SecuritySettings from '../components/settings/SecuritySettings';

@@ -27,11 +27,6 @@ class User(db.Model):
     def check_password(self, password):
         return bcrypt.check_password_hash(self.password_hash, password)
     
-class UserSettings(db.Model):
-    __tablename__ = 'usersettings'
-
-    id = db.Column(db.Integer, primary_key=True)
-
 
 class TodoItem(db.Model):
     __tablename__ = 'todos'

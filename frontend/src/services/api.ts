@@ -33,6 +33,13 @@ const getAuthHeaders = () => {
 
 // ========================= USERS ==============================
 
+export interface UserProfile {
+  firstname: string;
+  lastname: string;
+  email: string;
+  role: string;
+}
+
 export const registerUser  = async (firstname: string, lastname: string, email: string, password: string): Promise<any> => {
     try {
 
@@ -59,6 +66,42 @@ export const loginUser = async (email: string, password: string): Promise<{ acce
   return undefined as never;
 };
 
+export const fetchUserProfile = async (): Promise<UserProfile> => {
+  try {
+    const response = await axios.get(`${API_URL}/auth/profile`, {
+      headers: getAuthHeaders(),
+    });
+    return response.data;
+  } catch (error) {
+    handleApiError(error, 'Fetch User Profile');
+  }
+  return {} as UserProfile; // Returnera ett tomt objekt som fallback
+};
+
+// Uppdaterar användarens profilinformation
+export const updateUserProfile = async (
+  firstname: string, 
+  lastname: string, 
+  email: string, 
+  password?: string,
+): Promise<void> => {
+  try {
+    const response = await axios.put(`${API_URL}/auth/profile`, 
+    {
+      firstname,
+      lastname,
+      email,
+      password,
+    }, 
+    {
+      headers: getAuthHeaders(),
+    });
+    return response.data;
+  } catch (error) {
+    handleApiError(error, 'Update User Profile');
+  }
+};
+
 // ========================= TODOS ==============================
 
 // Todos
@@ -70,19 +113,19 @@ interface Todo {
   }
 
 
-  export const fetchTodos = async (): Promise<Todo[]> => {
-    try {
-      const response = await axios.get(`${API_URL}/todo/todos`,
-        {
-          headers: getAuthHeaders(),
-        }
-      );
-      return response.data;
-    } catch (error) {
-      handleApiError(error, 'Fetch Todos');
-    }
-    return []; // Returnera en tom array som fallback
-  };
+export const fetchTodos = async (): Promise<Todo[]> => {
+  try {
+    const response = await axios.get(`${API_URL}/todo/todos`,
+      {
+        headers: getAuthHeaders(),
+      }
+    );
+    return response.data;
+  } catch (error) {
+    handleApiError(error, 'Fetch Todos');
+  }
+  return []; // Returnera en tom array som fallback
+};
 
 export const addTodo = async (title: string, info: string = ''): Promise<Todo> => {
   try {

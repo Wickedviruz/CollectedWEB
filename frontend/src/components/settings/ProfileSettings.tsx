@@ -1,64 +1,37 @@
+// ProfileSettings.tsx
+
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { updateUserProfile, fetchUserProfile } from '../../services/api';
 import { Box, TextField, Button, Avatar, Typography, Container, Switch, FormControlLabel } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { useThemeContext } from '../../context/ThemeContext';
 import { motion } from 'framer-motion';
 
-
 const ProfileSettings: React.FC = () => {
-  const [name, setName] = useState<string>('');
+  const [firstname, setFirstName] = useState<string>('');
+  const [lastname, setLastName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [profileImage, setProfileImage] = useState<string | null>(null);
-  const [profileImageFile, setProfileImageFile] = useState<File | null>(null);
-  const [notifications, setNotifications] = useState<boolean>(false);
   const { currentTheme } = useThemeContext();
 
   useEffect(() => {
-    // Hämta användarens profilinformation när komponenten laddas
     const fetchProfile = async () => {
       try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/profile', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setName(response.data.name);
-        setEmail(response.data.email);
-        setProfileImage(response.data.profile_image);
-        setNotifications(response.data.notifications);
+        const profile = await fetchUserProfile();
+        setFirstName(profile.firstname);
+        setLastName(profile.lastname);
+        setEmail(profile.email);
       } catch (error) {
         console.error('Error fetching profile:', error);
       }
     };
-
     fetchProfile();
   }, []);
 
-  const handleProfileImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setProfileImageFile(e.target.files[0]);
-      setProfileImage(URL.createObjectURL(e.target.files[0]));
-    }
-  };
-
   const handleSaveProfile = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const formData = new FormData();
-      formData.append('name', name);
-      formData.append('email', email);
-      if (password) formData.append('password', password);
-      if (profileImageFile) formData.append('profile_image', profileImageFile);
-      formData.append('notifications', JSON.stringify(notifications));
-
-      await axios.post('http://localhost:5000/profile', formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-
+      await updateUserProfile(firstname, lastname, email, password);
       alert('Profil uppdaterad!');
     } catch (error) {
       console.error('Error updating profile:', error);
@@ -99,15 +72,22 @@ const ProfileSettings: React.FC = () => {
                   type="file"
                   hidden
                   accept="image/*"
-                  onChange={handleProfileImageChange}
+                  onChange={() => {}}
                 />
               </Button>
             </Box>
 
             <TextField
-              label="Namn"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              label="Förnamn"
+              value={firstname}
+              onChange={(e) => setFirstName(e.target.value)}
+              fullWidth
+              sx={{ mb: 2 }}
+            />
+            <TextField
+              label="Efternamn"
+              value={lastname}
+              onChange={(e) => setLastName(e.target.value)}
               fullWidth
               sx={{ mb: 2 }}
             />
@@ -126,18 +106,6 @@ const ProfileSettings: React.FC = () => {
               fullWidth
               sx={{ mb: 2 }}
               helperText="Lämna tomt om du inte vill ändra lösenordet"
-            />
-
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={notifications}
-                  onChange={() => setNotifications(!notifications)}
-                  color="primary"
-                />
-              }
-              label="Tillåt notifikationer"
-              sx={{ mb: 2 }}
             />
 
             <Button
