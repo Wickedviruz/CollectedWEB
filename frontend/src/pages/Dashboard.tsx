@@ -11,6 +11,7 @@ import Profile from './Profile';
 import ProfileSettings from '../components/settings/ProfileSettings';
 import GeneralSettings from '../components/settings/GeneralSettings';
 import SecuritySettings from '../components/settings/SecuritySettings';
+import WeatherSettings from '../components/settings/WeatherSettings';
 
 import {
   Box,
@@ -153,6 +154,14 @@ const Dashboard: React.FC = () => {
                       <ListItemText primary="Säkerhetsinställningar" />
                     </ListItemButton>
                   </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton component={Link} to="/dashboard/settings/weather">
+                      <ListItemIcon>
+                        <SecurityIcon sx={{ color: 'text.primary' }} />
+                      </ListItemIcon>
+                      <ListItemText primary="Väder inställnignar" />
+                    </ListItemButton>
+                  </ListItem>
                 </List>
               </Collapse>
             </List>
@@ -290,6 +299,7 @@ const Dashboard: React.FC = () => {
             <Route path="settings/profile" element={<ProfileSettings />} />
             <Route path="settings/general" element={<GeneralSettings />} />
             <Route path="settings/security" element={<SecuritySettings />} />
+            <Route path="settings/weather" element={<WeatherSettings />} />
             <Route path="todos" element={<TodoList />} />
             <Route path="todos/add" element={<AddTodo />} />
             <Route path="todos/edit/:id" element={<EditTodo />} />

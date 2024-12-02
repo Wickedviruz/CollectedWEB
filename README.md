@@ -1,6 +1,6 @@
 # Collected WEB - Open Source
 
-[![Feature Requests](https://img.shields.io/github/issues/Wickedviruz/CollectedWEB/feature-request.svg)](https://github.com/Wickedviruz/CollectedWEB/issues?q=is%3Aopen+is%3Aissue+label%3Afeature-request)
+[![Feature Requests](https://img.shields.io/github/issues/Wickedviruz/CollectedWEB/feature-request.svg)](https://github.com/Wickedviruz/CollectedWEB/issues?q=is%3Aopen+is%3Aissue)
 [![Bugs](https://img.shields.io/github/issues/Wickedviruz/CollectedWEB/bug.svg)](https://github.com/Wickedviruz/CollectedWEB/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
 
 
