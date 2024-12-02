@@ -39,6 +39,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import TuneIcon from '@mui/icons-material/Tune';
 import PersonIcon from '@mui/icons-material/Person';
 import SecurityIcon from '@mui/icons-material/Security';
+import ThermostatIcon from '@mui/icons-material/Thermostat';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useThemeContext } from '../context/ThemeContext';
@@ -157,7 +158,7 @@ const Dashboard: React.FC = () => {
                   <ListItem disablePadding>
                     <ListItemButton component={Link} to="/dashboard/settings/weather">
                       <ListItemIcon>
-                        <SecurityIcon sx={{ color: 'text.primary' }} />
+                        <ThermostatIcon sx={{ color: 'text.primary' }} />
                       </ListItemIcon>
                       <ListItemText primary="Väder inställnignar" />
                     </ListItemButton>

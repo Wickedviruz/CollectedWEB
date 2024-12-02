@@ -1,13 +1,18 @@
 # Collected WEB - Open Source
 
-[![Feature Requests](https://img.shields.io/github/issues/Wickedviruz/CollectedWEB/feature-request.svg)](https://github.com/Wickedviruz/CollectedWEB/issues?q=is%3Aopen+is%3Aissue)
+[![Feature Requests](https://img.shields.io/github/issues/Wickedviruz/CollectedWEB/feature-request.svg)](https://github.com/Wickedviruz/CollectedWEB/issues?q=is%3Aopen+is%3Aissue+label%3Afeature-request)
 [![Bugs](https://img.shields.io/github/issues/Wickedviruz/CollectedWEB/bug.svg)](https://github.com/Wickedviruz/CollectedWEB/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
+[![Pull Requests](https://img.shields.io/github/issues-pr/Wickedviruz/CollectedWEB.svg)](https://github.com/Wickedviruz/CollectedWEB/pulls)
+
 
 
 ## The Repository
-1. [The Repository](#The-Repository)
-2. [Contributing](#Contributing)
-3. [Installation och Setup](#installation-and-Setup)
+1. [The Repository](#the-repository)
+2. [Contributing](#contributing)
+3. [Installation and Setup](#installation-and-setup)
+4. [Development](#development)
+5. [License](#license)
+6. [Contact](#contact)
 
 ## Contributing
 If you want to contribut to the project, follow these steps:
