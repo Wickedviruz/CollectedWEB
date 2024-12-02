@@ -1,8 +1,11 @@
 # Collected WEB - Open Source
 
+[![All Issues](https://img.shields.io/github/issues/Wickedviruz/CollectedWEB.svg)](https://github.com/Wickedviruz/CollectedWEB/issues)
 [![Feature Requests](https://img.shields.io/github/issues/Wickedviruz/CollectedWEB/feature-request.svg)](https://github.com/Wickedviruz/CollectedWEB/issues?q=is%3Aopen+is%3Aissue+label%3Afeature-request)
 [![Bugs](https://img.shields.io/github/issues/Wickedviruz/CollectedWEB/bug.svg)](https://github.com/Wickedviruz/CollectedWEB/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
 [![Pull Requests](https://img.shields.io/github/issues-pr/Wickedviruz/CollectedWEB.svg)](https://github.com/Wickedviruz/CollectedWEB/pulls)
+[![Closed Issues](https://img.shields.io/github/issues-closed/Wickedviruz/CollectedWEB.svg)](https://github.com/Wickedviruz/CollectedWEB/issues?q=is%3Aissue+is%3Aclosed)
+
 
 
 
