@@ -1,7 +1,8 @@
 # Collected WEB - Open Source
 
-[![Feature Requests](https://img.shields.io/github/issues/microsoft/vscode/feature-request.svg)](https://github.com/microsoft/vscode/issues?q=is%3Aopen+is%3Aissue+label%3Afeature-request+sort%3Areactions-%2B1-desc)
-[![Bugs](https://img.shields.io/github/issues/microsoft/vscode/bug.svg)](https://github.com/microsoft/vscode/issues?utf8=✓&q=is%3Aissue+is%3Aopen+label%3Abug)
+[![Feature Requests](https://img.shields.io/github/issues/Wickedviruz/CollectedWEB/feature-request.svg)](https://github.com/Wickedviruz/CollectedWEB/issues?q=is%3Aopen+is%3Aissue+label%3Afeature-request)
+[![Bugs](https://img.shields.io/github/issues/Wickedviruz/CollectedWEB/bug.svg)](https://github.com/Wickedviruz/CollectedWEB/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
+
 
 ## The Repository
 1. [The Repository](#The-Repository)
@@ -16,23 +17,30 @@ If you want to contribut to the project, follow these steps:
 4. Push your updated code to your branch (`git push origin new function`).
 5. Send a pull request
 
-## Installation and Setup
+## **Development**
 
-### 1. Clone the project
-```bash
-git clone https://github.com/dittanvandarnamn/window-post-processor.git
-cd CollectedWeb
-```
+Contributions are welcome! Feel free to open issues and submit pull requests.
 
-### 2. Install all dependencies from `requirements.txt`.
-```bash
-pip install -r requirements.txt
-```
-### 3. Start the application by running python run.py
-```bash
-python run.py
-```
+1. **Fork the repository**.
+2. **Create a new branch**:
+    ```sh
+    git checkout -b feature-branch
+    ```
 
-## Feedback
+3. **Make your changes and commit them**:
+    ```sh
+    git commit -m "Description of changes"
+    ```
 
-## License
+4. **Push to your fork and submit a pull request**:
+    ```sh
+    git push origin feature-branch
+    ```
+
+## **License**
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## **Contact**
+
+For any questions or suggestions, please open an issue or contact [johan.ivarsson@live.se].

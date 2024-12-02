@@ -1,7 +1,9 @@
+# backend
+backend/config.yaml
 
 # Environment variables
 .env
-config.yaml
+
 
 # System files
 .DS_Store
