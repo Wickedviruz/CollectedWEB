@@ -8,6 +8,16 @@ const handleApiError = (error: any, context: string) => {
   if (error.response) {
     // The request was made and the server responded with a status code
     console.error(`${context} API Error:`, error.response.status, error.response.data);
+
+    if (error.response.status === 401) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+
+      alert('Your session has expired, please log in again');
+
+      window.location.href = '/login';
+    }
+
     throw new Error(error.response.data.message || 'An error occurred');
   } else if (error.request) {
     // The request was made but no response was received
@@ -24,6 +34,8 @@ const handleApiError = (error: any, context: string) => {
 const getAuthHeaders = () => {
   const token = localStorage.getItem('token');
   if (!token) {
+    alert('You need to log in to access this page.');
+    window.location.href = '/login';
     throw new Error ('No token found, user is not authenticated');
   }
   return{
